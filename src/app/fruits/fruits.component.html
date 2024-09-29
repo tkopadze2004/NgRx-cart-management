@@ -1,5 +1,5 @@
 <div class="fruits-container">
-  <app-item [item]="apple"></app-item>
-  <app-item [item]="orange"></app-item>
-  <app-item [item]="grapes"></app-item>
+  @for (item of fruits$|async; track item) {
+  <app-item [item]="item"/>
+  }
 </div>

@@ -2,5 +2,5 @@
   <div class="header-item" (click)="goToFruits()">Fruits</div>
   <div class="header-item" (click)="goToVegetables()">Vegetables</div>
   <div class="cart">Cart <img src="/public/favicon.ico" alt="cart" /></div>
-  <div class="cart-count">{{ cart.length }}</div>
+  <div class="cart-count">{{ cartQuantity$ | async }}</div>
 </div>

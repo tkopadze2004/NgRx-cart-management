@@ -1,20 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
+import { AsyncPipe } from '@angular/common';
+import { map, Observable } from 'rxjs';
+import { selectCart, selectCartQuantity } from '../store/selectors/cart.selectors';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  public cart$: Observable<number[]>;
+  public cartQuantity$: Observable<number>;
 
-  @Input() cart: any[] = [];
-
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private store: Store<AppState>) {
+    this.cart$ = this.store.select(selectCart).pipe(map((res) => res.cart));
+    this.cartQuantity$ = this.store.select(selectCartQuantity);
   }
 
   goToFruits() {
@@ -22,5 +27,6 @@ export class HeaderComponent {
   }
 
   goToVegetables() {
-    this.router.navigate(['vegetables'])
-  }}
+    this.router.navigate(['vegetables']);
+  }
+}
