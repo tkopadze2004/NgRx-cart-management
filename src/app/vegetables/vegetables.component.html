@@ -1,5 +1,5 @@
 <div class="vegetables-container">
-  <app-item [item]="onion"></app-item>
-  <app-item [item]="tomato"></app-item>
-  <app-item [item]="potato"></app-item>
+ @for (item of vegetables$ | async; track item) {
+  <app-item [item]="item"/>
+ }
 </div>

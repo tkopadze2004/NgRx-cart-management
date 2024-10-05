@@ -7,12 +7,14 @@ import { provideEffects } from '@ngrx/effects';
 import { cartReducer } from './store/reducers/cart-reducers';
 import { fruitReducer } from './store/reducers/fruits.reducers';
 import { FruitsEffects } from './store/effects/fruits.effects';
+import { vegetableReducer } from './store/reducers/vegetables.reducer';
+import { VegetablesEffect } from './store/effects/vegetables.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({ cart: cartReducer, fruits:fruitReducer }),
-    provideEffects(FruitsEffects)
+    provideStore({ cart: cartReducer, fruits:fruitReducer, vegetables:vegetableReducer }),
+    provideEffects(FruitsEffects,VegetablesEffect)
   ],
 };

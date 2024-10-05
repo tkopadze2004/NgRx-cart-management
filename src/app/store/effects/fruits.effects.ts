@@ -10,8 +10,8 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class FruitsEffects {
-  action = inject(Actions);
-  private dataService = inject(DataService);
+  private readonly action = inject(Actions);
+  private readonly dataService = inject(DataService);
 
   loadFruitsObj = createEffect(() =>
     this.action.pipe(
@@ -19,7 +19,6 @@ export class FruitsEffects {
       mergeMap(() =>
         this.dataService.getFruits().pipe(
           map((fruits) => loadFruitsSuccess({ fruits })),
-
           catchError((error) => of(loadFruitsFail({ error })))
         )
       )

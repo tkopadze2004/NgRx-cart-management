@@ -1,29 +1,25 @@
-import { Component } from '@angular/core';
-import { ItemComponent } from "../item/item.component";
+import { Component, inject, OnInit } from '@angular/core';
+import { ItemComponent } from '../item/item.component';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
+import { selectVegetables } from '../store/selectors/vegetables.selectors';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-vegetables',
   standalone: true,
-  imports: [ItemComponent],
+  imports: [ItemComponent,AsyncPipe],
   templateUrl: './vegetables.component.html',
-  styleUrl: './vegetables.component.scss'
+  styleUrl: './vegetables.component.scss',
 })
-export class VegetablesComponent {
-  onion = {
-    id: 4,
-    name: "Onion",
-    pic: "https://media.istockphoto.com/id/621472882/photo/purple-onion-on-white.jpg?s=612x612&w=0&k=20&c=4W3IQtB5XkkKPT-a22MgkmL-hrn-2FPiUchL-hLbtFk="
-  };
+export class VegetablesComponent implements OnInit {
+  private readonly store = inject(Store);
+  public vegetables$: Observable<unknown[]> | undefined;
 
-  tomato = {
-    id: 5,
-    name: "Tomato",
-    pic: "https://media.istockphoto.com/id/91476821/photo/three-tomatoes.jpg?b=1&s=612x612&w=0&k=20&c=eOyYlyUEClMkm9hqYX7IMGEHqKYnAiLKr5tF80cAI84="
-  };
+  public ngOnInit(): void {
+    this.vegetables$ = this.store
+      .select(selectVegetables)
+      .pipe(map((res) => res.vegetables));
+  }
 
-  potato = {
-    id: 6,
-    name: "Potato",
-    pic: "https://media.istockphoto.com/id/157430678/photo/three-potatoes.jpg?b=1&s=612x612&w=0&k=20&c=txk4DGWXL9cntyePO6C-X8inysng0mQ0lCuW2FdjG00="
-  };
 }
