@@ -1,4 +1,6 @@
 <div class="fruits-container">
+  <app-spinner *ngIf="isLoading"/>
+
   @for (item of fruits$|async; track item) {
   <app-item [item]="item"/>
   }
