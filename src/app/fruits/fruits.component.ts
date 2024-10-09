@@ -20,7 +20,7 @@ export class FruitsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.fruits$ = this.store.select(selectFruits).pipe(
-      tap(() => (this.isLoading = true)),  // Start the spinner
+      tap(() => (this.isLoading = true)),
       map((res) => res.fruits),
       tap(() => (this.isLoading = false))
     );
