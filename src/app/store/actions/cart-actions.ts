@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import { AppState } from '../app.state';
+import { CartActionsTypes } from './cart.actions.types';
 
 export const addToCart = createAction(
-  '[Item] Add To Cart',
+  CartActionsTypes.ADD_TO_CART,
   props<{ item: AppState }>()
 );
 

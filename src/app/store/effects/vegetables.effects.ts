@@ -1,7 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { DataService } from '../../services/data-service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { getVegetables, getVegetablesFail, getVegetablesSuccess } from '../actions/vegetables.action';
+import {
+  getVegetables,
+  getVegetablesFail,
+  getVegetablesSuccess,
+} from '../actions/vegetables.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

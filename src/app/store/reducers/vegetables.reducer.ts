@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppState } from '../app.state';
-import * as VegetablesActions from '../actions/vegetables.action';
+import * as VegetablesActions from '../actions/vegetables.actions';
 
 export const initialState: AppState = {
   cart: [],

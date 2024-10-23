@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { Store } from '@ngrx/store';
 import { getFruits } from './store/actions/fruits.actions';
-import { getVegetables } from './store/actions/vegetables.action';
+import { getVegetables } from './store/actions/vegetables.actions';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.store.dispatch(getFruits());
-    this.store.dispatch(getVegetables())
+    this.store.dispatch(getVegetables());
   }
 }

@@ -1,13 +1,14 @@
 import { createAction, props } from '@ngrx/store';
+import { FruitActionsTypes } from './fruits.actions.types';
 
-export const getFruits = createAction('[Fruits] Load Fruits ');
+export const getFruits = createAction(FruitActionsTypes.GET_FRUITS);
 
 export const getFruitsSuccess = createAction(
-  '[Fruits] Load Fruits Success ',
+  FruitActionsTypes.GET_FRUITS_SUCCESS,
   props<{ fruits: any[] }>()
 );
 
 export const getFruitsFail = createAction(
-  '[Fruits] Load Fruits Failure ',
+  FruitActionsTypes.GET_FRUITS_FAIL,
   props<{ error: string }>()
 );
