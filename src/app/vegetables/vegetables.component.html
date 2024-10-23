@@ -1,10 +1,11 @@
 <div class="vegetables-container">
   @if (loading$ | ngrxPush) {
-  <div class="loading-spinner">
-    <mat-spinner></mat-spinner>
-  </div>
-  } @if (vegetables$ | ngrxPush; as veggies) { @for (veggie of veggies; track
-  veggie) {
-  <app-item [item]="veggie" />
-  } }
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else {
+    @for (veggie of (vegetables$ | ngrxPush); track veggie) {
+      <app-item [item]="veggie" />
+    }
+  }
 </div>

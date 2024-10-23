@@ -6,19 +6,19 @@ import {
   loadVegeTables,
   selectVegetables,
 } from '../store/selectors/vegetables.selectors';
-import { AsyncPipe } from '@angular/common';
 import { PushPipe } from '@ngrx/component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Iitem } from '../core/interfaces/item.interface';
 
 @Component({
   selector: 'app-vegetables',
   standalone: true,
-  imports: [ItemComponent, AsyncPipe, PushPipe, MatProgressSpinnerModule],
+  imports: [ItemComponent, PushPipe, MatProgressSpinnerModule],
   templateUrl: './vegetables.component.html',
   styleUrl: './vegetables.component.scss',
 })
 export class VegetablesComponent {
   private readonly store = inject(Store);
   public loading$: Observable<boolean> = this.store.select(loadVegeTables);
-  public vegetables$ = this.store.select(selectVegetables);
+  public vegetables$: Observable<Iitem[]> = this.store.select(selectVegetables);
 }

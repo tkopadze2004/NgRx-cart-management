@@ -10,10 +10,9 @@ import { getVegetables } from './store/actions/vegetables.actions';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
   ngOnInit(): void {
     this.store.dispatch(getFruits());

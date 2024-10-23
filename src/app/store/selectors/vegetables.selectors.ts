@@ -1,7 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppState } from '../app.state';
 
-export const selectVegetablesState = createFeatureSelector<any>('vegetables');
+export const selectVegetablesState =
+  createFeatureSelector<AppState>('vegetables');
 
 export const selectVegetables = createSelector(
   selectVegetablesState,

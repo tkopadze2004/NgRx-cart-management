@@ -5,12 +5,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './add-item.component.html',
-  styleUrl: './add-item.component.scss'
+  styleUrl: './add-item.component.scss',
 })
 export class AddItemComponent {
   @Output() addItemToCart = new EventEmitter();
 
-  addToCart() {
+  public addToCart(): void {
     this.addItemToCart.emit();
   }
 }

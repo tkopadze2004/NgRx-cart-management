@@ -1,32 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.state';
-import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
-import { selectCart, selectCartQuantity } from '../store/selectors/cart.selectors';
+import {
+  selectCart,
+  selectCartQuantity,
+} from '../store/selectors/cart.selectors';
+import { PushPipe } from '@ngrx/component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [PushPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  public cart$: Observable<number[]>;
-  public cartQuantity$: Observable<number>;
+  private readonly router = inject(Router);
+  private readonly store = inject(Store);
 
-  constructor(private router: Router, private store: Store<AppState>) {
-    this.cart$ = this.store.select(selectCart).pipe(map((res) => res.cart));
-    this.cartQuantity$ = this.store.select(selectCartQuantity);
-  }
+  public cart$: Observable<number[]> = this.store
+    .select(selectCart)
+    .pipe(map((res) => res.cart));
 
-  goToFruits() {
+  public cartQuantity$: Observable<number> =
+    this.store.select(selectCartQuantity);
+
+  public goToFruits(): void {
     this.router.navigate(['fruits']);
   }
 
-  goToVegetables() {
+  public goToVegetables(): void {
     this.router.navigate(['vegetables']);
   }
 }

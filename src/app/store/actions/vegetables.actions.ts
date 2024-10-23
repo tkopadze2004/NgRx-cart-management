@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { VegetablesActionsTypes } from './vegetables.actions.types';
+import { Iitem } from '../../core/interfaces/item.interface';
 
 export const getVegetables = createAction(
   VegetablesActionsTypes.GET_VEGETABLES
@@ -7,7 +8,7 @@ export const getVegetables = createAction(
 
 export const getVegetablesSuccess = createAction(
   VegetablesActionsTypes.GET_VEGETABLES_SUCCESS,
-  props<{ vegetables: any[] }>()
+  props<{ vegetables: Iitem[] }>()
 );
 
 export const getVegetablesFail = createAction(
