@@ -1,7 +1,9 @@
 <div class="fruits-container">
-  <app-spinner *ngIf="isLoading"/>
-
-  @for (item of fruits$|async; track item) {
-  <app-item [item]="item"/>
-  }
+  @if (loading$|ngrxPush ) {
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  } @if (fruits$ | ngrxPush ; as fruit) { @for (item of fruit; track item) {
+  <app-item [item]="item" />
+  } }
 </div>

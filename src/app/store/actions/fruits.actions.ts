@@ -1,13 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
-export const loadFruits = createAction('[Fruits] Load Fruits ');
+export const getFruits = createAction('[Fruits] Load Fruits ');
 
-export const loadFruitsSuccess = createAction(
+export const getFruitsSuccess = createAction(
   '[Fruits] Load Fruits Success ',
-  props<{ fruits: any[]}>()
+  props<{ fruits: any[] }>()
 );
 
-export const loadFruitsFail = createAction(
+export const getFruitsFail = createAction(
   '[Fruits] Load Fruits Failure ',
   props<{ error: string }>()
 );

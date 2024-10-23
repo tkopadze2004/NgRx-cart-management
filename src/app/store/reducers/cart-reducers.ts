@@ -6,6 +6,8 @@ export const initialState: AppState = {
   cart: [],
   vegetables: [],
   fruits: [],
+  loading: false,
+  error: null,
 };
 export const cartReducer = createReducer(
   initialState,

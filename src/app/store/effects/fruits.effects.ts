@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { DataService } from '../../services/data-service';
 import {
-  loadFruits,
-  loadFruitsFail,
-  loadFruitsSuccess,
+  getFruits,
+  getFruitsFail,
+  getFruitsSuccess,
 } from '../actions/fruits.actions';
 
 @Injectable({ providedIn: 'root' })
@@ -15,11 +15,11 @@ export class FruitsEffects {
 
   loadFruitsObj = createEffect(() =>
     this.action.pipe(
-      ofType(loadFruits),
+      ofType(getFruits),
       mergeMap(() =>
         this.dataService.getFruits().pipe(
-          map((fruits) => loadFruitsSuccess({ fruits })),
-          catchError((error) => of(loadFruitsFail({ error })))
+          map((fruits) => getFruitsSuccess({ fruits })),
+          catchError((error) => of(getFruitsFail({ error })))
         )
       )
     )

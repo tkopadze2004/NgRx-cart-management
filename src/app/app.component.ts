@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { Store } from '@ngrx/store';
-import { loadFruits } from './store/actions/fruits.actions';
-import { loadVegetables } from './store/actions/vegetables.action';
+import { getFruits } from './store/actions/fruits.actions';
+import { getVegetables } from './store/actions/vegetables.action';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   private store = inject(Store);
 
   ngOnInit(): void {
-    this.store.dispatch(loadFruits());
-    this.store.dispatch(loadVegetables())
+    this.store.dispatch(getFruits());
+    this.store.dispatch(getVegetables())
   }
 }

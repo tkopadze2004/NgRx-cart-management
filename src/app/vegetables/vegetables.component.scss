@@ -1,5 +1,12 @@
 .vegetables-container {
-  padding: 50px;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10%;
 }

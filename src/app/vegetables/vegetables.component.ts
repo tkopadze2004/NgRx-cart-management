@@ -1,25 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { selectVegetables } from '../store/selectors/vegetables.selectors';
+import { Observable } from 'rxjs';
+import {
+  loadVegeTables,
+  selectVegetables,
+} from '../store/selectors/vegetables.selectors';
 import { AsyncPipe } from '@angular/common';
+import { PushPipe } from '@ngrx/component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-vegetables',
   standalone: true,
-  imports: [ItemComponent,AsyncPipe],
+  imports: [ItemComponent, AsyncPipe, PushPipe, MatProgressSpinnerModule],
   templateUrl: './vegetables.component.html',
   styleUrl: './vegetables.component.scss',
 })
-export class VegetablesComponent implements OnInit {
+export class VegetablesComponent {
   private readonly store = inject(Store);
-  public vegetables$: Observable<unknown[]> | undefined;
-
-  public ngOnInit(): void {
-    this.vegetables$ = this.store
-      .select(selectVegetables)
-      .pipe(map((res) => res.vegetables));
-  }
-
+  public loading$: Observable<boolean> = this.store.select(loadVegeTables);
+  public vegetables$ = this.store.select(selectVegetables);
 }

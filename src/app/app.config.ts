@@ -9,12 +9,13 @@ import { fruitReducer } from './store/reducers/fruits.reducers';
 import { FruitsEffects } from './store/effects/fruits.effects';
 import { vegetableReducer } from './store/reducers/vegetables.reducer';
 import { VegetablesEffect } from './store/effects/vegetables.effects';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({ cart: cartReducer, fruits:fruitReducer, vegetables:vegetableReducer }),
-    provideEffects(FruitsEffects,VegetablesEffect)
+    provideEffects(FruitsEffects,VegetablesEffect), provideAnimationsAsync()
   ],
 };
